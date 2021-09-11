@@ -10,7 +10,7 @@ This openid repository is a OpenID Connect client library for Golang.
 go get -u go.n0stack.dev/lib/openid
 ```
 
-## Supporting list
+## Supporting features
 
 - [ ] [RFC 6749: The OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
   - [x] 4.1. Authorization Code Grant
