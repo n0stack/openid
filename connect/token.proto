@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+option go_package = "go.n0stack.dev/lib/openid/connect;oidc";
+
+package n0.auth.openid.connect;
+
+message Token {
+  // OAuth 2.0 Access Token. This is returned unless the response_type value used is id_token.
+  string access_token = 1;
+  
+  // OAuth 2.0 Token Type value. The value MUST be Bearer or another token_type value that the Client has negotiated with the Authorization Server. Clients implementing this profile MUST support the OAuth 2.0 Bearer Token Usage [RFC6750] specification. This profile only describes the use of bearer tokens. This is returned in the same cases as access_token is.
+  string token_type = 2;
+  
+  string refresh_token = 3;
+  
+  // OPTIONAL. Expiration time of the Access Token in seconds since the response was generated.
+  uint32 expires_in = 4;
+  
+  // REQUIRED. ID Token.
+  string id_token = 5;
+
+  // OAuth 2.0 state value. REQUIRED if the state parameter is present in the Authorization Request. Clients MUST verify that the state value is equal to the value of state parameter in the Authorization Request.
+  string state = 6;
+}
