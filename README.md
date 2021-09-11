@@ -1,5 +1,7 @@
 # openid
 
+[![Go Reference](https://pkg.go.dev/badge/go.n0stack.dev/lib/openid.svg)](https://pkg.go.dev/go.n0stack.dev/lib/openid)
+
 This openid repository is a OpenID Connect client library for Golang.
 
 ## Usage
