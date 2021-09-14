@@ -19,9 +19,9 @@ type authorizationCodeGrant struct {
 }
 
 // https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth
-func (c *OIDCAuthenticator) AuthorizationCodeGrant(redirectURL string, method PKCECodeChallengeMethod) AuthorizationCodeGrant {
+func (a *OIDCAuthenticator) AuthorizationCodeGrant(redirectURL string, method PKCECodeChallengeMethod) AuthorizationCodeGrant {
 	out := &authorizationCodeGrant{
-		OIDCAuthenticator: c,
+		OIDCAuthenticator: a,
 	}
 
 	codeVerifier := randString(128)

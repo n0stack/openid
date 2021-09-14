@@ -12,7 +12,7 @@ import (
 var _ Authentication = &OIDCAuthenticator{}
 
 func (a *OIDCAuthenticator) ClientCredentialsGrant() oidc.TokenSource {
-	out := NewRefreshTokenSource(nil, func(ctx context.Context, _ *oidc.Token) (*oidc.Token, error) {
+	getter := func(ctx context.Context, _ *oidc.Token) (*oidc.Token, error) {
 		values := url.Values{}
 		values.Set("grant_type", "client_credentials")
 		values.Set("scope", strings.Join(a.scope, " "))
@@ -29,8 +29,9 @@ func (a *OIDCAuthenticator) ClientCredentialsGrant() oidc.TokenSource {
 		}
 
 		return token, nil
-	})
+	}
 
+	out := NewRefreshTokenSource(nil, getter)
 	return out
 }
 

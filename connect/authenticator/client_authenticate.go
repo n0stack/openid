@@ -12,8 +12,8 @@ import (
 
 var _ ClientAuthentication = &OIDCAuthenticator{}
 
-func (cfg *OIDCAuthenticator) PublicClient(clientID string) Authentication {
-	out := cfg.Clone()
+func (a *OIDCAuthenticator) PublicClient(clientID string) Authentication {
+	out := a.Clone()
 
 	out.onAuthorizationRequest = append(out.onAuthorizationRequest, func(values url.Values) error {
 		values.Add("client_id", clientID)
@@ -27,8 +27,8 @@ func (cfg *OIDCAuthenticator) PublicClient(clientID string) Authentication {
 	return out
 }
 
-func (cfg *OIDCAuthenticator) ClientSecret(clientID string, clientSecret string) Authentication {
-	out := cfg.Clone()
+func (a *OIDCAuthenticator) ClientSecret(clientID string, clientSecret string) Authentication {
+	out := a.Clone()
 
 	out.onAuthorizationRequest = append(out.onAuthorizationRequest, func(values url.Values) error {
 		values.Add("client_id", clientID)
@@ -46,8 +46,8 @@ func (cfg *OIDCAuthenticator) ClientSecret(clientID string, clientSecret string)
 const ClientBearerJWTIssuer = "go.n0stack.dev/lib/openid/connect/authenticator"
 const ClientBearerJWTExpiration = 3 * time.Minute
 
-func (cfg *OIDCAuthenticator) ClientBearerJWT(clientID string, privateKey *rsa.PrivateKey) Authentication {
-	out := cfg.Clone()
+func (a *OIDCAuthenticator) ClientBearerJWT(clientID string, privateKey *rsa.PrivateKey) Authentication {
+	out := a.Clone()
 
 	out.onAuthorizationRequest = append(out.onAuthorizationRequest, func(values url.Values) error {
 		values.Add("client_id", clientID)
@@ -56,7 +56,7 @@ func (cfg *OIDCAuthenticator) ClientBearerJWT(clientID string, privateKey *rsa.P
 	out.onTokenRequest = append(out.onTokenRequest, func(values url.Values) error {
 		t := jwt.New()
 		t.Set(jwt.IssuerKey, ClientBearerJWTIssuer)
-		t.Set(jwt.AudienceKey, cfg.Config.TokenEndpoint)
+		t.Set(jwt.AudienceKey, out.Config.TokenEndpoint)
 		t.Set(jwt.SubjectKey, clientID)
 		t.Set(jwt.ExpirationKey, time.Now().Add(ClientBearerJWTExpiration).Unix())
 		t.Set(jwt.IssuedAtKey, time.Now().Unix())

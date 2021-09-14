@@ -16,7 +16,7 @@ type OIDCOptions interface {
 type ClientAuthentication interface {
 	OIDCOptions
 
-	// RFC 7636: Proof Key for Code Exchange by OAuth Public Clients
+	// RFC 6749: The OAuth 2.0 Authorization Framework
 	PublicClient(clientID string) Authentication
 
 	// RFC 6749: The OAuth 2.0 Authorization Framework
@@ -49,6 +49,8 @@ type Authentication interface {
 const OOBRedirectURI = "urn:ietf:wg:oauth:2.0:oob"
 
 type AuthorizationCodeGrant interface {
+	// AuthCodeURL returns a URL of authorization endpoint.
+	//
 	// https://openid.net/specs/openid-connect-core-1_0.html#AuthorizationEndpoint
 	AuthCodeURL() (string, error)
 
