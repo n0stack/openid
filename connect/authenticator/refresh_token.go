@@ -23,20 +23,18 @@ func NewRefreshTokenSource(
 	refresher func(ctx context.Context, token *oidc.Token) (*oidc.Token, error),
 ) *RefreshTokenSource {
 	out := &RefreshTokenSource{
-		token:     token,
-		refresher: refresher,
-
+		now:                time.Now,
 		TokenRefreshMargin: 1 * time.Minute,
 
-		now:        time.Now,
-		nextUpdate: time.Now(),
+		token:     token,
+		refresher: refresher,
 	}
 
 	return out
 }
 
 func (ts *RefreshTokenSource) Token(ctx context.Context) (*oidc.Token, error) {
-	if ts.nextUpdate.After(ts.now()) {
+	if ts.nextUpdate.Before(ts.now()) {
 		t, err := ts.refresher(ctx, ts.token)
 		if err != nil {
 			return nil, fmt.Errorf(`ts.refresher(ctx, ts.token) %w`, err)
