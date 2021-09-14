@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "go.n0stack.dev/lib/openid/connect;oidc";
 
-package n0.auth.openid.connect;
+package openid.connect;
 
 message Token {
   // OAuth 2.0 Access Token. This is returned unless the response_type value used is id_token.
