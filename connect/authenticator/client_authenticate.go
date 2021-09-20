@@ -55,7 +55,9 @@ func (a *OIDCAuthenticator) ClientBearerJWT(clientID string, privateKey *rsa.Pri
 	})
 	out.onTokenRequest = append(out.onTokenRequest, func(values url.Values) error {
 		t := jwt.New()
-		t.Set(jwt.IssuerKey, ClientBearerJWTIssuer)
+		// commented based on strange Keycloak implementation; keycloak returns error "Client authentication with signed JWT failed: Issuer mismatch. The issuer should match the subject"
+		// t.Set(jwt.IssuerKey, ClientBearerJWTIssuer)
+		t.Set(jwt.IssuerKey, clientID)
 		t.Set(jwt.AudienceKey, out.Config.TokenEndpoint)
 		t.Set(jwt.SubjectKey, clientID)
 		t.Set(jwt.ExpirationKey, time.Now().Add(ClientBearerJWTExpiration).Unix())

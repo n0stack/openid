@@ -12,3 +12,25 @@
 - [client-credentials-grant](./client-credentials-grant)
   - client credentials grant
   - confidential client which is authenticated by bearer-jwt
+
+
+## Usage
+
+1. Up keycloak
+
+```
+docker-compose up -d
+```
+
+2. Run examples
+
+```
+cd authorization-code-grant-with-public-client
+go run main.go
+```
+
+If example code open a login prompt, use below information.
+
+| Username | Password |
+| -- | -- |
+| examples | password |

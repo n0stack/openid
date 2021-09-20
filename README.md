@@ -20,12 +20,16 @@ go get -u go.n0stack.dev/lib/openid
   - [ ] 4.3. Resource Owner Password Credentials Grant [DEPRECATED]
   - [x] 4.4. Client Credentials Grant
   - [x] 6. Refreshing an Access Token
-- [RFC 7636: Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
-  - [ ] plain
-  - [x] S256
+- [RFC 7009: OAuth 2.0 Token Revocation](https://datatracker.ietf.org/doc/html/rfc7009)
+  - [ ] 2. Token Revocation
 - [RFC 7523: JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants](https://datatracker.ietf.org/doc/html/rfc7523)
   - [ ] 2.1. Using JWTs as Authorization Grants
   - [x] 2.2. Using JWTs for Client Authentication
+- [RFC 7636: Proof Key for Code Exchange by OAuth Public Clients](https://datatracker.ietf.org/doc/html/rfc7636)
+  - [ ] plain
+  - [x] S256
+- [RFC 7662: OAuth 2.0 Token Introspection](https://datatracker.ietf.org/doc/html/rfc7662)
+  - [ ] 2. Introspection Endpoint
 - [OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)
   - [x] 2. ID Token / 3.1.3.7. ID Token Validation / 5.1. Standard Claims
   - [x] 3.1. Authentication using the Authorization Code Flow
